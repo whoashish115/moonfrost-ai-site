@@ -1,0 +1,699 @@
+/*
+ * One set of custom properties on :root, redefined under the dark theme and nowhere else.
+ * Adding a colour means editing one line rather than hunting through rules, and the theme
+ * switch works by flipping a single attribute on <html>.
+ */
+
+:root {
+  --pink: #c2428f;
+  --pink-dark: #a83679;
+  --pink-soft: #fdf2f8;
+  --bg: #ffffff;
+  --bg-sunken: #f7f8fa;
+  --border: #e6eaf1;
+  --text: #16181d;
+  --text-muted: #5b626f;
+  --text-faint: #8b909e;
+  --radius: 14px;
+  --measure: 68ch;
+  --danger: #d0453b;
+  /* three neutrals for the reference series, so a legend is readable without a second hue */
+  --bar-0: #f0c6e2;
+  --bar-0-mid: #dc8ec1;
+  --bar-1: #6b7280;
+  --bar-2: #9aa0ac;
+  --bar-3: #c8ccd4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1013;
+    --bg-sunken: #16191e;
+    --border: #23262d;
+    --text: #eef0f4;
+    --text-muted: #a2a8b4;
+    --text-faint: #767c89;
+    --pink-soft: #251320;
+    --bar-0: #63234a;
+    --bar-0-mid: #8f3a6b;
+    --bar-1: #565d69;
+    --bar-2: #3b414b;
+    --bar-3: #2b3038;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1013;
+  --bg-sunken: #16191e;
+  --border: #23262d;
+  --text: #eef0f4;
+  --text-muted: #a2a8b4;
+  --text-faint: #767c89;
+  --pink-soft: #251320;
+  --bar-0: #63234a;
+  --bar-0-mid: #8f3a6b;
+  --bar-1: #565d69;
+  --bar-2: #3b414b;
+  --bar-3: #2b3038;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* A visible focus ring everywhere, since the page is mostly links and one button. */
+:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+/* Wide content scrolls inside its own box rather than pushing the page sideways. */
+.scroll-x {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+section {
+  padding: clamp(44px, 8vw, 68px) 0;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------------- nav ---------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 62px;
+  flex-wrap: wrap;
+  padding-block: 8px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand-mark {
+  height: 32px;
+  width: auto;
+}
+.brand-name {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+.nav-links {
+  display: flex;
+  gap: 2px;
+}
+.nav-link {
+  padding: 7px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover {
+  background: var(--bg-sunken);
+  color: var(--text);
+}
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s, color 0.15s;
+}
+.theme-btn:hover {
+  background: var(--bg-sunken);
+  color: var(--text);
+}
+
+/* ---------------- buttons ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 17px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, transform 0.12s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: var(--pink);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--pink-dark);
+}
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: var(--bg-sunken);
+}
+
+/* ---------------- hero ---------------- */
+.hero {
+  padding: clamp(40px, 8vw, 72px) 0 clamp(32px, 6vw, 56px);
+  text-align: center;
+}
+.hero-mark {
+  height: clamp(72px, 14vw, 104px);
+  width: auto;
+  margin: 0 auto 22px;
+  display: block;
+}
+.eyebrow {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--pink-soft);
+  color: var(--pink);
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--pink) 22%, transparent);
+}
+h1 {
+  font-size: clamp(32px, 7vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 20px 0 0;
+  font-weight: 700;
+}
+h1 em {
+  font-style: normal;
+  color: var(--pink);
+}
+.lede {
+  max-width: 640px;
+  margin: 18px auto 0;
+  font-size: clamp(15.5px, 2.2vw, 17.5px);
+  color: var(--text-muted);
+}
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+/* ---------------- stats ---------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* clear of the next section's border-top, which otherwise meets the box's own bottom
+     border and reads as one welded line rather than a card above a divider */
+  margin: 0 0 clamp(44px, 8vw, 68px);
+}
+.stat {
+  background: var(--bg);
+  padding: 20px 12px;
+  text-align: center;
+}
+.stat dd {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(20px, 4vw, 25px);
+  font-weight: 700;
+}
+.stat dt {
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+
+/* ---------------- sections ---------------- */
+h2 {
+  font-size: clamp(22px, 4vw, 28px);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.sub {
+  color: var(--text-muted);
+  margin: 0 0 28px;
+}
+.note {
+  margin: 22px 0 0;
+  font-size: 15px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 14px;
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--bg);
+  transition: border-color 0.16s, transform 0.16s;
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--pink) 40%, var(--border));
+  transform: translateY(-2px);
+}
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 650;
+}
+.card p {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+.card-num {
+  font-family: var(--font-display), sans-serif;
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.link-card {
+  text-decoration: none;
+  display: block;
+}
+.card h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 650;
+}
+.group + .group {
+  margin-top: 34px;
+}
+.group-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 14px;
+}
+.group-head h3 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+.group-head p {
+  margin: 0;
+  flex: 1;
+  min-width: 160px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+.group-head a {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* ---------------- loss panels ---------------- */
+.loss-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+}
+.loss-panel {
+  margin: 0;
+}
+.loss-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 650;
+  margin: 0 0 4px;
+}
+.loss-note {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ---------------- tables ---------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+th,
+td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom: none;
+}
+thead th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+tbody th {
+  font-weight: 500;
+}
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.faint {
+  color: var(--text-faint);
+}
+.ours {
+  color: var(--pink);
+  font-weight: 650;
+}
+.best {
+  font-weight: 700;
+}
+
+/* ---------------- footer ---------------- */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0 48px;
+  color: var(--text-faint);
+  font-size: 13.5px;
+}
+.foot {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.foot a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.foot a:hover {
+  color: var(--pink);
+}
+.spacer {
+  flex: 1;
+}
+
+/* ---------------- narrow screens ---------------- */
+@media (max-width: 720px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+    margin-top: 2px;
+  }
+}
+@media (max-width: 420px) {
+  .nav-hf {
+    display: none;
+  }
+  .nav-link {
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+}
+
+/* ---------------- charts ---------------- */
+.chart {
+  margin: 0 0 26px;
+}
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.chart.share svg {
+  overflow: hidden;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend i.dash {
+  width: 14px;
+  height: 0;
+  border-top: 2px dashed var(--danger);
+  border-radius: 0;
+}
+.spec-table td {
+  white-space: normal;
+  color: var(--text-muted);
+}
+.spec-table th[scope="row"] {
+  white-space: nowrap;
+}
+
+/* ---------------- icon links ---------------- */
+.nav-icons {
+  display: flex;
+  gap: 2px;
+}
+/* The marks carry their own colours, so hovering lifts them rather than tinting them.
+   GitHub is the exception: its mark inherits, because it is black on light and white on
+   dark and either fixed colour would vanish into one of them. */
+.icon-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  /* the brand marks carry their own colours; only GitHub and the info button read this */
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.icon-link:hover {
+  color: var(--text);
+}
+.icon-link:hover {
+  background: var(--bg-sunken);
+  transform: translateY(-1px);
+}
+.icon-link svg {
+  display: block;
+}
+.chart-heading {
+  font-size: 17px;
+  font-weight: 650;
+  margin: 34px 0 8px;
+}
+
+/* ---------------- about dialog ---------------- */
+.about {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  max-width: min(420px, calc(100vw - 32px));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+.about::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+.about-inner {
+  padding: 28px 26px 22px;
+  text-align: center;
+}
+.about-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+/* Name, handle and role are one block of three lines, so they take a tight line-height
+   and no margins between them. The body's 1.65 was leaving a third of a line of air after
+   each one. */
+.about h2 {
+  margin: 14px 0 0;
+  font-size: 21px;
+  line-height: 1.25;
+}
+.about-handle {
+  display: inline-block;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.about-handle:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.about-role {
+  margin: 2px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--pink);
+  max-width: none;
+}
+/* Small pills rather than buttons: five of them read as a row of links, five buttons read
+   as five decisions. */
+.about-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.about-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.about-links a svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.about-links a:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  background: var(--pink-soft);
+}
+.about-close {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+}
+.about-close:hover {
+  background: var(--pink-dark);
+}
+.about-close:active {
+  transform: translateY(1px);
+}
