@@ -36,3 +36,34 @@ export const HEADLINE_STATS = [
   { value: "6B", label: "training tokens" },
   { value: "$55", label: "total cost" },
 ];
+
+export const IDEAS = [
+  {
+    number: "01",
+    title: "Multi-head Latent Attention",
+    body:
+      "Instead of caching a key and a value for each of fourteen heads, the input is projected " +
+      "to one shared latent of 320 numbers and keys are rebuilt from it. Position rides " +
+      "separately on a 32-number rotary key, because a position-rotated key cannot be " +
+      "reconstructed from an unrotated latent. The cache holds 352 numbers per token instead " +
+      "of 1,792.",
+  },
+  {
+    number: "02",
+    title: "DeepSeekMoE routing",
+    body:
+      "Every layer above the first holds 32 routed experts and one shared expert. A router " +
+      "picks the top 3, the shared expert always runs, so a token passes through 4 of 33. " +
+      "Seventy per cent of the parameters are idle for any given token, which is why 777M " +
+      "costs about as much to run as 161M.",
+  },
+  {
+    number: "03",
+    title: "Stacked expert dispatch",
+    body:
+      "Experts are three stacked (32, hidden, ffn) tensors with capacity-based routing rather " +
+      "than 32 modules in a Python loop, which forced a GPU synchronisation thirty-two times " +
+      "per layer per step. That single change took training from 6,056 to 179,000 tokens per " +
+      "second.",
+  },
+];
