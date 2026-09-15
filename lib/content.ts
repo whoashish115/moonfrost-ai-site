@@ -17,3 +17,15 @@ export const SITE = {
   url: "https://moonfrost-ai.vercel.app",
   author: "Ashish Kumar",
 };
+
+export const LINKS = {
+  github: "https://github.com/whoashish115/moonfrost-ai",
+  site: "https://github.com/whoashish115/moonfrost-ai-site",
+  instruct: "https://huggingface.co/whoashish115/Moonfrost-777M-Instruct-v2",
+  instructV1: "https://huggingface.co/whoashish115/Moonfrost-777M-Instruct-v1",
+  base: "https://huggingface.co/whoashish115/Moonfrost-777M",
+  dataset: "https://huggingface.co/datasets/whoashish115/Moonfrost-Persona-SFT",
+  collection:
+    "https://huggingface.co/collections/whoashish115/moonfrost-777m-6aa67a24b82a750ffcd9ef41",
+  wandb: "https://wandb.ai/whoashish115-base/moonfrost-777m",
+};
