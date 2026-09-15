@@ -29,3 +29,10 @@ export const LINKS = {
     "https://huggingface.co/collections/whoashish115/moonfrost-777m-6aa67a24b82a750ffcd9ef41",
   wandb: "https://wandb.ai/whoashish115-base/moonfrost-777m",
 };
+
+export const HEADLINE_STATS = [
+  { value: "777M", label: "total parameters" },
+  { value: "161M", label: "active per token" },
+  { value: "6B", label: "training tokens" },
+  { value: "$55", label: "total cost" },
+];
