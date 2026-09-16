@@ -82,3 +82,99 @@ export const TRAINING_STAGES = [
  * can be read rather than assumed. Only ARC-Easy moves: 54.8, 52.4, 44.4 across the
  * base and the two tunes. Gaps under about six points are noise at this sample size.
  */
+export const BENCHMARKS = {
+  columns: ["Moonfrost Base", "Moonfrost Instruct v1", "Moonfrost Instruct v2", "SmolLM2-135M", "SmolLM2-360M", "Qwen2.5-0.5B"],
+  rows: [
+    { name: "ARC-Easy", chance: 25.0, scores: [54.8, 52.4, 44.4, 62.8, 68.4, 64.4] },
+    { name: "ARC-Challenge", chance: 25.0, scores: [25.2, 24.4, 24.4, 27.6, 37.2, 34.8] },
+    { name: "HellaSwag", chance: 25.0, scores: [36.0, 38.4, 37.2, 40.0, 43.6, 42.4] },
+    { name: "WinoGrande", chance: 50.0, scores: [51.2, 53.2, 54.0, 54.0, 56.0, 56.8] },
+    { name: "BoolQ", chance: 50.0, scores: [62.4, 61.2, 58.8, 62.0, 63.6, 65.2] },
+    { name: "MMLU", chance: 25.0, scores: [28.8, 30.0, 30.8, 32.4, 36.8, 34.4] },
+  ],
+};
+
+/**
+ * The public artefacts, grouped by where they live. Four Hugging Face repositories, two git
+ * repositories, one run log. The collection is a link on the group it summarises rather
+ * than a card of its own, because it points at the same four things.
+ */
+export const RESOURCE_GROUPS = [
+  {
+    heading: "Weights and data",
+    note: "Four repositories on Hugging Face, Apache 2.0.",
+    all: { label: "All four as one collection", href: LINKS.collection },
+    items: [
+      {
+        tag: "BASE",
+        title: "Moonfrost-777M",
+        body:
+          "Pretrained weights, 6B tokens of FineWeb-Edu, validation loss 2.976. Continues " +
+          "text rather than answering it. Both tunes start here.",
+        href: LINKS.base,
+      },
+      {
+        tag: "INSTRUCT",
+        title: "Moonfrost-777M-Instruct-v2",
+        body:
+          "1.7 epochs of supervised fine-tuning including the persona set. Best validation " +
+          "loss 1.2484 at step 7,800. Answers as Moonfrost and holds a thread.",
+        href: LINKS.instruct,
+      },
+      {
+        tag: "INSTRUCT",
+        title: "Moonfrost-777M-Instruct-v1",
+        body:
+          "0.42 epochs, no identity data, validation loss 1.3251. Claims no persona, which " +
+          "makes it the neutral starting point for a tune of your own.",
+        href: LINKS.instructV1,
+      },
+      {
+        tag: "DATASET",
+        title: "Moonfrost-Persona-SFT",
+        body:
+          "140,000 generated identity conversations, 3.3% of the v2 mixture and the whole " +
+          "reason v2 has a stable self-description.",
+        href: LINKS.dataset,
+      },
+    ],
+  },
+  {
+    heading: "Code",
+    note: "Everything that produced the weights, and this page.",
+    items: [
+      {
+        tag: "REPOSITORY",
+        title: "moonfrost-ai",
+        body:
+          "Tokenizer, model, training loop, evaluation harness and chat server. About " +
+          "6,900 lines of Python, no modelling framework above PyTorch.",
+        href: LINKS.github,
+      },
+      {
+        tag: "REPOSITORY",
+        title: "moonfrost-ai-site",
+        body:
+          "The source for this page: Next.js, static export, every figure on it read from " +
+          "one module so the page cannot disagree with itself.",
+        href: LINKS.site,
+      },
+    ],
+  },
+  {
+    heading: "Training record",
+    note: "The runs as they happened, loss curves included.",
+    items: [
+      {
+        tag: "LOGS",
+        title: "Weights & Biases",
+        body:
+          "Loss, learning rate, gradient norm and throughput for both pretraining phases " +
+          "and the fine-tune, replayed from the logs the runs wrote.",
+        href: LINKS.wandb,
+      },
+    ],
+  },
+];
+
+/** The BibTeX entry, kept here so the page and the repositories cannot disagree. */
