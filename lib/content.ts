@@ -178,3 +178,10 @@ export const RESOURCE_GROUPS = [
 ];
 
 /** The BibTeX entry, kept here so the page and the repositories cannot disagree. */
+export const CITATION = `@misc{kumar2026moonfrost,
+  title  = {Moonfrost: A 777M Mixture-of-Experts Language Model
+            Trained From Scratch},
+  author = {Kumar, Ashish},
+  year   = {2026},
+  url    = {https://github.com/whoashish115/moonfrost-ai}
+}`;
