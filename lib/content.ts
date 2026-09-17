@@ -204,3 +204,25 @@ export const AUTHOR = {
 };
 
 /** The whole specification, as it appears in the model card. */
+export const SPEC: Array<[string, string]> = [
+  ["Total parameters", "777,148,032"],
+  ["Active per token", "161,036,224"],
+  ["Layers", "14, one dense and thirteen Mixture-of-Experts"],
+  ["Hidden size / heads", "896 / 14"],
+  ["Experts", "32 routed with top-3 routing, plus 1 shared"],
+  ["Attention", "Multi-head Latent Attention, 320 KV latent + 32 rotary key"],
+  ["KV cache per token", "352 numbers, against 1,792 for standard attention"],
+  ["Context", "1,024 tokens"],
+  ["Vocabulary", "32,768, byte-level BPE trained from scratch"],
+  ["Pretraining", "~6B tokens of FineWeb-Edu, val loss 2.976"],
+  ["Chat fine-tune", "1.7 epochs, best at step 7,800, val loss 1.2484"],
+  ["Peak / min learning rate", "6e-4 / 6e-5 pretraining, 2e-4 / 2e-5 fine-tune"],
+  ["Batch", "micro-batch 24, accumulation 12, 294,912 tokens per step"],
+  ["Precision", "bf16 autocast with fp32 master weights"],
+  ["Held-out perplexity", "51.64 on an unseen shard"],
+  ["Training throughput", "179,000 tokens/second on one H100"],
+  ["Inference", "16.8 tokens/second, fp32, batch 1, RTX 3050"],
+  ["Compute", "1x H100, ~12 GPU-hours, about $55"],
+];
+
+/** Where each layer's parameters sit, for the share chart. */
