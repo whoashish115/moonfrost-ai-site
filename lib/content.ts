@@ -226,3 +226,14 @@ export const SPEC: Array<[string, string]> = [
 ];
 
 /** Where each layer's parameters sit, for the share chart. */
+export const PARAMETER_SHARE = [
+  { part: "Routed experts", value: 543, share: 70 },
+  { part: "Attention", value: 118, share: 15 },
+  { part: "Shared experts + dense", value: 84, share: 11 },
+  { part: "Embedding (tied)", value: 29, share: 4 },
+];
+
+/**
+ * Size against text read, for the scale chart. Only models whose developer published both
+ * numbers can be placed, which is why the closed frontier models are absent here.
+ */
