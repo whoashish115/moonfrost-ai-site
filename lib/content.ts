@@ -237,3 +237,63 @@ export const PARAMETER_SHARE = [
  * Size against text read, for the scale chart. Only models whose developer published both
  * numbers can be placed, which is why the closed frontier models are absent here.
  */
+export const LANDSCAPE = [
+  { name: "GPT-2", params: 1.5e9, tokens: 1e10 },
+  { name: "GPT-3", params: 1.75e11, tokens: 3e11 },
+  { name: "Chinchilla", params: 7e10, tokens: 1.4e12 },
+  { name: "Llama 2 7B", params: 7e9, tokens: 2e12 },
+  { name: "Llama 3 8B", params: 8e9, tokens: 1.5e13 },
+  { name: "DeepSeek-V3", params: 6.71e11, tokens: 1.48e13 },
+  { name: "SmolLM2-135M", params: 1.35e8, tokens: 2e12 },
+  { name: "SmolLM2-360M", params: 3.62e8, tokens: 4e12 },
+  { name: "Qwen2.5-0.5B", params: 5e8, tokens: 1.8e13 },
+  { name: "Moonfrost 777M (base)", params: 7.77e8, tokens: 6e9, ours: true },
+];
+
+/**
+ * MMLU for every model people know, which is the only score published widely enough to put
+ * open and closed models on one axis. Figures are each developer's own five-shot number,
+ * except the four marked `here`, which were measured on this machine with the same harness
+ * as Moonfrost. Where the two disagree the measured one is used: Qwen2.5-0.5B publishes
+ * 47.5 and scores 34.4 here, which is the size of the gap a different harness can open.
+ *
+ * Nothing on this list is estimated. A model whose developer has not published a score does
+ * not appear, however well known it is.
+ */
+export const CAPABILITY: Array<{
+  name: string;
+  year: number;
+  mmlu: number;
+  open: boolean;
+  here?: boolean;
+  ours?: boolean;
+}> = [
+  { name: "o1", year: 2024, mmlu: 91.8, open: false },
+  { name: "DeepSeek-R1", year: 2025, mmlu: 90.8, open: true },
+  { name: "GPT-4o", year: 2024, mmlu: 88.7, open: false },
+  { name: "Claude 3.5 Sonnet", year: 2024, mmlu: 88.7, open: false },
+  { name: "Llama 3.1 405B", year: 2024, mmlu: 88.6, open: true },
+  { name: "DeepSeek-V3", year: 2024, mmlu: 88.5, open: true },
+  { name: "Claude 3 Opus", year: 2024, mmlu: 86.8, open: false },
+  { name: "GPT-4", year: 2023, mmlu: 86.4, open: false },
+  { name: "Qwen2.5-72B", year: 2024, mmlu: 86.1, open: true },
+  { name: "Gemini 1.5 Pro", year: 2024, mmlu: 85.9, open: false },
+  { name: "Llama 3.1 70B", year: 2024, mmlu: 83.6, open: true },
+  { name: "Gemma 2 9B", year: 2024, mmlu: 71.3, open: true },
+  { name: "Mixtral 8x7B", year: 2023, mmlu: 70.6, open: true },
+  { name: "Llama 2 70B", year: 2023, mmlu: 68.9, open: true },
+  { name: "Chinchilla 70B", year: 2022, mmlu: 67.5, open: false },
+  { name: "Llama 3 8B", year: 2024, mmlu: 66.6, open: true },
+  { name: "LLaMA 65B", year: 2023, mmlu: 63.4, open: true },
+  { name: "Mistral 7B", year: 2023, mmlu: 60.1, open: true },
+  { name: "SmolLM2-1.7B", year: 2024, mmlu: 51.9, open: true },
+  { name: "Llama 2 7B", year: 2023, mmlu: 45.3, open: true },
+  { name: "GPT-3 175B", year: 2020, mmlu: 43.9, open: false },
+  { name: "SmolLM2-360M", year: 2024, mmlu: 36.8, open: true, here: true },
+  { name: "Qwen2.5-0.5B", year: 2024, mmlu: 34.4, open: true, here: true },
+  { name: "SmolLM2-135M", year: 2024, mmlu: 32.4, open: true, here: true },
+  { name: "Moonfrost Instruct v2", year: 2026, mmlu: 30.8, open: true, here: true, ours: true },
+  { name: "OLMo 7B", year: 2024, mmlu: 28.3, open: true },
+  { name: "GPT-2 1.5B", year: 2019, mmlu: 26.0, open: true },
+  { name: "Pythia 1.4B", year: 2023, mmlu: 25.6, open: true },
+];
