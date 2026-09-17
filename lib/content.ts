@@ -185,3 +185,22 @@ export const CITATION = `@misc{kumar2026moonfrost,
   year   = {2026},
   url    = {https://github.com/whoashish115/moonfrost-ai}
 }`;
+
+export const AUTHOR = {
+  name: "Ashish Kumar",
+  handle: "@whoashish115",
+  profile: "https://github.com/whoashish115",
+  role: "AI Systems and Research Engineer",
+  // served by GitHub, so it follows the profile rather than going stale in the repository
+  avatar: "https://avatars.githubusercontent.com/whoashish115",
+  // `icon` names the component the dialog renders beside each label
+  links: [
+    { label: "GitHub", href: "https://github.com/whoashish115", icon: "github" },
+    { label: "Hugging Face", href: "https://huggingface.co/whoashish115", icon: "huggingface" },
+    { label: "X", href: "https://x.com/whoashish115", icon: "x" },
+    { label: "Site", href: "https://moonfrost-ai.vercel.app", icon: "globe" },
+    { label: "Weights & Biases", href: "https://wandb.ai/whoashish115-base", icon: "wandb" },
+  ] as const,
+};
+
+/** The whole specification, as it appears in the model card. */
