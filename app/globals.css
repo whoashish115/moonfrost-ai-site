@@ -1,0 +1,166 @@
+/*
+ * One set of custom properties on :root, redefined under the dark theme and nowhere else.
+ * Adding a colour means editing one line rather than hunting through rules, and the theme
+ * switch works by flipping a single attribute on <html>.
+ */
+
+:root {
+  --pink: #c2428f;
+  --pink-dark: #a83679;
+  --pink-soft: #fdf2f8;
+  --bg: #ffffff;
+  --bg-sunken: #f7f8fa;
+  --border: #e6eaf1;
+  --text: #16181d;
+  --text-muted: #5b626f;
+  --text-faint: #8b909e;
+  --radius: 14px;
+  --measure: 68ch;
+  --danger: #d0453b;
+  /* three neutrals for the reference series, so a legend is readable without a second hue */
+  --bar-0: #f0c6e2;
+  --bar-0-mid: #dc8ec1;
+  --bar-1: #6b7280;
+  --bar-2: #9aa0ac;
+  --bar-3: #c8ccd4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1013;
+    --bg-sunken: #16191e;
+    --border: #23262d;
+    --text: #eef0f4;
+    --text-muted: #a2a8b4;
+    --text-faint: #767c89;
+    --pink-soft: #251320;
+    --bar-0: #63234a;
+    --bar-0-mid: #8f3a6b;
+    --bar-1: #565d69;
+    --bar-2: #3b414b;
+    --bar-3: #2b3038;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1013;
+  --bg-sunken: #16191e;
+  --border: #23262d;
+  --text: #eef0f4;
+  --text-muted: #a2a8b4;
+  --text-faint: #767c89;
+  --pink-soft: #251320;
+  --bar-0: #63234a;
+  --bar-0-mid: #8f3a6b;
+  --bar-1: #565d69;
+  --bar-2: #3b414b;
+  --bar-3: #2b3038;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* A visible focus ring everywhere, since the page is mostly links and one button. */
+:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+/* Wide content scrolls inside its own box rather than pushing the page sideways. */
+.scroll-x {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  max-width: var(--measure);
+}
+
+section {
+  padding: clamp(44px, 8vw, 68px) 0;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------------- nav ---------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 62px;
+  flex-wrap: wrap;
+  padding-block: 8px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  margin-right: auto;
+}
+.brand-mark {
+  height: 32px;
+  width: auto;
+}
