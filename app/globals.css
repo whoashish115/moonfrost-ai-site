@@ -164,3 +164,63 @@ section {
   height: 32px;
   width: auto;
 }
+.brand-name {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+.nav-links {
+  display: flex;
+  gap: 2px;
+}
+.nav-link {
+  padding: 7px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover {
+  background: var(--bg-sunken);
+  color: var(--text);
+}
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s, color 0.15s;
+}
+.theme-btn:hover {
+  background: var(--bg-sunken);
+  color: var(--text);
+}
+
+/* ---------------- buttons ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 17px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, transform 0.12s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-primary {
+  background: var(--pink);
+  color: #fff;
+}
