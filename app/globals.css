@@ -224,3 +224,59 @@ section {
   background: var(--pink);
   color: #fff;
 }
+.btn-primary:hover {
+  background: var(--pink-dark);
+}
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: var(--bg-sunken);
+}
+
+/* ---------------- hero ---------------- */
+.hero {
+  padding: clamp(40px, 8vw, 72px) 0 clamp(32px, 6vw, 56px);
+  text-align: center;
+}
+.hero-mark {
+  height: clamp(72px, 14vw, 104px);
+  width: auto;
+  margin: 0 auto 22px;
+  display: block;
+}
+.eyebrow {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--pink-soft);
+  color: var(--pink);
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--pink) 22%, transparent);
+}
+h1 {
+  font-size: clamp(32px, 7vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 20px 0 0;
+  font-weight: 700;
+}
+h1 em {
+  font-style: normal;
+  color: var(--pink);
+}
+.lede {
+  max-width: 640px;
+  margin: 18px auto 0;
+  font-size: clamp(15.5px, 2.2vw, 17.5px);
+  color: var(--text-muted);
+}
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
