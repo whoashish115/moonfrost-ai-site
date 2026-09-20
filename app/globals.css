@@ -336,3 +336,56 @@ h2 {
   background: var(--bg);
   transition: border-color 0.16s, transform 0.16s;
 }
+.card:hover {
+  border-color: color-mix(in srgb, var(--pink) 40%, var(--border));
+  transform: translateY(-2px);
+}
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 650;
+}
+.card p {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+.card-num {
+  font-family: var(--font-display), sans-serif;
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.link-card {
+  text-decoration: none;
+  display: block;
+}
+.card h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 650;
+}
+.group + .group {
+  margin-top: 34px;
+}
+.group-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 14px;
+}
+.group-head h3 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+.group-head p {
+  margin: 0;
+  flex: 1;
+  min-width: 160px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
