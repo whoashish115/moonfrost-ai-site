@@ -389,3 +389,45 @@ h2 {
   font-size: 14.5px;
   color: var(--text-muted);
 }
+.group-head a {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* ---------------- loss panels ---------------- */
+.loss-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+}
+.loss-panel {
+  margin: 0;
+}
+.loss-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 650;
+  margin: 0 0 4px;
+}
+.loss-note {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ---------------- citation ---------------- */
+.cite {
+  position: relative;
+}
+.cite pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
