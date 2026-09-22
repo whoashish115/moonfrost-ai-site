@@ -509,3 +509,51 @@ footer {
   flex-wrap: wrap;
   align-items: center;
 }
+.foot a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.foot a:hover {
+  color: var(--pink);
+}
+.spacer {
+  flex: 1;
+}
+
+/* ---------------- narrow screens ---------------- */
+@media (max-width: 720px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+    margin-top: 2px;
+  }
+}
+@media (max-width: 420px) {
+  .nav-hf {
+    display: none;
+  }
+  .nav-link {
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+}
+
+/* ---------------- charts ---------------- */
+.chart {
+  margin: 0 0 26px;
+}
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.chart.share svg {
+  overflow: hidden;
+}
