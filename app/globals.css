@@ -557,3 +557,58 @@ footer {
 .chart.share svg {
   overflow: hidden;
 }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.legend i.dash {
+  width: 14px;
+  height: 0;
+  border-top: 2px dashed var(--danger);
+  border-radius: 0;
+}
+.spec-table td {
+  white-space: normal;
+  color: var(--text-muted);
+}
+.spec-table th[scope="row"] {
+  white-space: nowrap;
+}
+
+/* ---------------- icon links ---------------- */
+.nav-icons {
+  display: flex;
+  gap: 2px;
+}
+/* The marks carry their own colours, so hovering lifts them rather than tinting them.
+   GitHub is the exception: its mark inherits, because it is black on light and white on
+   dark and either fixed colour would vanish into one of them. */
+.icon-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  /* the brand marks carry their own colours; only GitHub and the info button read this */
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
