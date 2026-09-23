@@ -612,3 +612,52 @@ footer {
   cursor: pointer;
   transition: background 0.15s, color 0.15s, transform 0.15s;
 }
+.icon-link:hover {
+  color: var(--text);
+}
+.icon-link:hover {
+  background: var(--bg-sunken);
+  transform: translateY(-1px);
+}
+.icon-link svg {
+  display: block;
+}
+.chart-heading {
+  font-size: 17px;
+  font-weight: 650;
+  margin: 34px 0 8px;
+}
+
+/* ---------------- about dialog ---------------- */
+.about {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  max-width: min(420px, calc(100vw - 32px));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+.about::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+.about-inner {
+  padding: 28px 26px 22px;
+  text-align: center;
+}
+.about-avatar {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+/* Name, handle and role are one block of three lines, so they take a tight line-height
+   and no margins between them. The body's 1.65 was leaving a third of a line of air after
+   each one. */
+.about h2 {
+  margin: 14px 0 0;
+  font-size: 21px;
+  line-height: 1.25;
+}
