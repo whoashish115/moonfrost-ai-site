@@ -661,3 +661,76 @@ footer {
   font-size: 21px;
   line-height: 1.25;
 }
+.about-handle {
+  display: inline-block;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.about-handle:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.about-role {
+  margin: 2px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--pink);
+  max-width: none;
+}
+/* Small pills rather than buttons: five of them read as a row of links, five buttons read
+   as five decisions. */
+.about-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.about-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.about-links a svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.about-links a:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  background: var(--pink-soft);
+}
+.about-close {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--pink);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+}
+.about-close:hover {
+  background: var(--pink-dark);
+}
+.about-close:active {
+  transform: translateY(1px);
+}
