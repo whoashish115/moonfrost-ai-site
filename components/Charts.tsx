@@ -180,3 +180,68 @@ export function LossChart() {
 }
 
 /** Parameters against tokens, both on log scales, with the compute-optimal line. */
+export function ScaleChart() {
+  const width = 720;
+  const height = 330;
+  const pad = { left: 46, right: 92, top: 18, bottom: 40 };
+  const xMin = 7.9;   // 1e7.9 parameters
+  const xMax = 12.1;
+  const yMin = 9.4;
+  const yMax = 13.6;
+  const px = (value: number) =>
+    pad.left + ((Math.log10(value) - xMin) / (xMax - xMin)) * (width - pad.left - pad.right);
+  const py = (value: number) =>
+    height - pad.bottom - ((Math.log10(value) - yMin) / (yMax - yMin)) * (height - pad.top - pad.bottom);
+
+  const tick = (value: number) =>
+    value >= 1e12 ? `${value / 1e12}T` : value >= 1e9 ? `${value / 1e9}B` : `${value / 1e6}M`;
+
+  return (
+    <figure className="chart">
+      <svg viewBox={`0 0 ${width} ${height}`} role="img"
+           aria-label="Model size against training tokens on log scales, with Moonfrost far below the compute-optimal line">
+        {[1e8, 1e9, 1e10, 1e11, 1e12].map((value) => (
+          <g key={`x${value}`}>
+            <line x1={px(value)} x2={px(value)} y1={pad.top} y2={height - pad.bottom}
+                  stroke="var(--border)" strokeWidth="1" />
+            <text x={px(value)} y={height - pad.bottom + 15} textAnchor="middle"
+                  fill={INK} fontSize="10">{tick(value)}</text>
+          </g>
+        ))}
+        {[1e10, 1e11, 1e12, 1e13].map((value) => (
+          <g key={`y${value}`}>
+            <line x1={pad.left} x2={width - pad.right} y1={py(value)} y2={py(value)}
+                  stroke="var(--border)" strokeWidth="1" />
+            <text x={pad.left - 7} y={py(value) + 3.5} textAnchor="end"
+                  fill={INK} fontSize="10">{tick(value)}</text>
+          </g>
+        ))}
+
+        {/* twenty tokens per parameter: roughly where a model is trained as much as its size justifies */}
+        <line x1={px(10 ** xMin)} y1={py(10 ** xMin * 20)}
+              x2={px(10 ** xMax)} y2={py(10 ** xMax * 20)}
+              stroke="var(--text-muted)" strokeWidth="1.2" strokeDasharray="5 4" />
+        <text x={width - pad.right - 4} y={py(10 ** xMax * 20) - 8} textAnchor="end"
+              fill="var(--text-muted)" fontSize="10">20 tokens per parameter</text>
+
+        {LANDSCAPE.map((model) => (
+          <g key={model.name}>
+            <circle cx={px(model.params)} cy={py(model.tokens)}
+                    r={model.ours ? 6.5 : 4} fill={model.ours ? PINK : INK}
+                    stroke="var(--bg)" strokeWidth={model.ours ? 2 : 0} />
+            <text x={px(model.params) + (model.ours ? 11 : 8)} y={py(model.tokens) + 3.5}
+                  fill={model.ours ? PINK : "var(--text-muted)"} fontSize="10"
+                  fontWeight={model.ours ? 700 : 400}>{model.name}</text>
+          </g>
+        ))}
+
+        <text x={(width - pad.right + pad.left) / 2} y={height - 4} textAnchor="middle"
+              fill={INK} fontSize="10">parameters</text>
+        <text x={12} y={height / 2} textAnchor="middle" fill={INK} fontSize="10"
+              transform={`rotate(-90 12 ${height / 2})`}>training tokens</text>
+      </svg>
+    </figure>
+  );
+}
+
+/** Where the parameters sit, as one stacked bar. */
