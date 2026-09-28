@@ -245,3 +245,99 @@ export function ScaleChart() {
 }
 
 /** Where the parameters sit, as one stacked bar. */
+export function ParameterShare() {
+  let offset = 0;
+  const shades = [PINK, "var(--bar-3)", "var(--bar-2)", "var(--bar-1)"];
+  return (
+    <figure className="chart share">
+      <svg viewBox="0 0 720 44" role="img"
+           aria-label="Seventy per cent of the parameters are routed experts">
+        {PARAMETER_SHARE.map((part, index) => {
+          const w = (part.share / 100) * 720;
+          const x = offset;
+          offset += w;
+          return (
+            <rect key={part.part} x={x} y={8} width={w - 2} height={28} rx="3"
+                  fill={shades[index]}>
+              <title>{`${part.part}: ${part.value}M parameters, ${part.share}%`}</title>
+            </rect>
+          );
+        })}
+      </svg>
+      <figcaption className="legend">
+        {PARAMETER_SHARE.map((part, index) => (
+          <span key={part.part}>
+            <i style={{ background: shades[index] }} />
+            {part.part} <b>{part.share}%</b>
+          </span>
+        ))}
+      </figcaption>
+    </figure>
+  );
+}
+
+/**
+ * Every model on one axis, sorted by MMLU. This is the chart the scale one cannot be:
+ * closed models publish a score but never a parameter count, so this is the only place
+ * GPT-4, Claude and Gemini can stand next to everything else honestly.
+ */
+export function CapabilityChart() {
+  const rowHeight = 20;
+  const labelWidth = 132;
+  const valueWidth = 42;
+  const width = 720;
+  const height = CAPABILITY.length * rowHeight + 26;
+  const trackWidth = width - labelWidth - valueWidth - 12;
+  const chanceX = labelWidth + (25 / 100) * trackWidth;
+
+  return (
+    <figure className="chart">
+      <svg viewBox={`0 0 ${width} ${height}`} role="img"
+           aria-label="MMLU for 28 models from GPT-2 to o1, with Moonfrost fourth from last">
+        {/* chance on a four-option question: below this a score means nothing */}
+        <line x1={chanceX} x2={chanceX} y1={4} y2={height - 22}
+              stroke="var(--danger)" strokeWidth="1.4" strokeDasharray="4 3" />
+
+        {CAPABILITY.map((model, index) => {
+          const y = index * rowHeight + 4;
+          const barWidth = (model.mmlu / 100) * trackWidth;
+          const fill = model.ours ? "var(--pink)" : model.open ? "var(--bar-1)" : "var(--bar-2)";
+          return (
+            <g key={model.name}>
+              <text x={labelWidth - 9} y={y + 12} textAnchor="end" fontSize="10.5"
+                    fill={model.ours ? "var(--pink)" : "var(--text-muted)"}
+                    fontWeight={model.ours ? 700 : 400}>
+                {model.name}
+              </text>
+              <rect x={labelWidth} y={y + 3} width={trackWidth} height={rowHeight - 8}
+                    rx="3" fill="var(--bg-sunken)" />
+              <rect x={labelWidth} y={y + 3} width={barWidth} height={rowHeight - 8}
+                    rx="3" fill={fill}>
+                <title>{`${model.name} (${model.year}): ${model.mmlu}% MMLU`}</title>
+              </rect>
+              <text x={labelWidth + trackWidth + 8} y={y + 12} fontSize="10.5"
+                    fill={model.ours ? "var(--pink)" : "var(--text)"}
+                    fontWeight={model.ours ? 700 : 400}>
+                {model.mmlu.toFixed(1)}
+              </text>
+              {model.here ? (
+                <text x={width - 2} y={y + 12} textAnchor="end" fontSize="9"
+                      fill="var(--text-faint)">here</text>
+              ) : null}
+            </g>
+          );
+        })}
+
+        <text x={chanceX} y={height - 8} textAnchor="middle" fontSize="9.5"
+              fill="var(--danger)">chance, 25%</text>
+      </svg>
+
+      <figcaption className="legend">
+        <span><i style={{ background: "var(--pink)" }} />Moonfrost</span>
+        <span><i style={{ background: "var(--bar-1)" }} />open weights</span>
+        <span><i style={{ background: "var(--bar-2)" }} />closed</span>
+        <span className="chance-key"><i className="dash" />chance</span>
+      </figcaption>
+    </figure>
+  );
+}
