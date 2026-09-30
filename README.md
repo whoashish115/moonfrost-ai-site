@@ -27,12 +27,13 @@ moonfrost-site/
 │   └── globals.css     tokens and every rule
 ├── components/
 │   ├── Nav.tsx         header, section links, project icons
-│   ├── Charts.tsx      benchmark bars, the scale scatter, the parameter share
+│   ├── Charts.tsx      benchmark bars, loss panels, the scale scatter, parameter share
 │   ├── Icons.tsx       GitHub, Hugging Face, Weights & Biases
 │   ├── AboutDialog.tsx the info panel
 │   └── ThemeToggle.tsx the only client component on the page
 ├── lib/
-│   └── content.ts      every number and link the page shows
+│   ├── content.ts      every number and link the page shows
+│   └── curves.ts       loss curves, generated from the training logs
 ├── public/
 │   ├── logo.png
 │   └── icons/          favicon set and the web manifest
@@ -40,7 +41,7 @@ moonfrost-site/
 └── package.json
 ```
 
-Everything the page displays comes from `lib/content.ts`. The numbers there are measured,
-taken from `docs/eval*.json` in the model repository where each was produced by the same
-harness on the same 250 examples, so changing a figure means editing one file.
+## License
+
+Apache 2.0, Copyright 2026 Ashish Kumar. The full text is in [LICENSE](LICENSE).
 
