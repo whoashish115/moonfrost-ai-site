@@ -1,47 +1,49 @@
-# Moonfrost Site
+<p align="center"><img src="public/logo.png" width="112" alt="Moonfrost AI logo"></p>
 
-The project page for [Moonfrost](https://github.com/whoashish115/moonfrost-ai), a
-777M-parameter Mixture-of-Experts language model built and trained from scratch. Live at
-[moonfrost-ai.vercel.app](https://moonfrost-ai.vercel.app).
+<h1 align="center">Moonfrost AI site</h1>
 
-Next.js with the App Router and TypeScript, exported as static HTML.
+<p align="center"><a href="https://moonfrost-ai.vercel.app"><b>Site</b></a> ·
+<a href="https://github.com/whoashish115/moonfrost-ai">Main repo</a> ·
+<a href="https://huggingface.co/whoashish115/Moonfrost-777M">Base</a> ·
+<a href="https://huggingface.co/whoashish115/Moonfrost-777M-Instruct-v2">Instruct v2</a> ·
+<a href="https://huggingface.co/spaces/whoashish115/moonfrost-ai-chat">Demo</a></p>
 
-## Run
+Source of the site for `Moonfrost-777M`, a 777M-parameter Mixture-of-Experts language model trained
+from scratch: the architecture, the training record with loss curves, the measured benchmarks against
+three reference models, the full specification and the links. Every figure is drawn as inline SVG, so
+both themes work from one set of tokens and the page ships no chart library.
+
+## Data
+
+This repository holds no measurements of its own. `lib/content.ts` and `lib/curves.ts` are generated in the
+[main repository](https://github.com/whoashish115/moonfrost-ai), where every number comes from `docs/eval*.json`
+and `docs/logs/`:
+
+```bash
+# in a checkout of moonfrost-ai, with this repository next to it
+python training/sync_benchmarks.py     # benchmark tables, from docs/eval*.json
+python training/export_curves.py       # loss curves, from docs/logs/*.jsonl
+```
+
+## Development
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:3000
+npm run build    # static export to out/
 ```
 
-```bash
-npm run build        # static export into out/
-```
+Next.js 16 (static export), React 19, TypeScript. Deployed on Vercel from `main`.
 
 ## Layout
 
 ```
-moonfrost-site/
-├── app/
-│   ├── layout.tsx      metadata, fonts, the pre-paint theme script
-│   ├── page.tsx        the page
-│   └── globals.css     tokens and every rule
-├── components/
-│   ├── Nav.tsx         header, section links, project icons
-│   ├── Charts.tsx      benchmark bars, loss panels, the scale scatter, parameter share
-│   ├── Icons.tsx       GitHub, Hugging Face, Weights & Biases
-│   ├── AboutDialog.tsx the info panel
-│   └── ThemeToggle.tsx the only client component on the page
-├── lib/
-│   ├── content.ts      every number and link the page shows
-│   └── curves.ts       loss curves, generated from the training logs
-├── public/
-│   ├── logo.png
-│   └── icons/          favicon set and the web manifest
-├── next.config.ts
-└── package.json
+app/              layout, the page, global styles (palette tokens for light and dark)
+components/       nav, charts drawn as inline SVG, about dialog, citation, theme toggle
+lib/              content.ts and curves.ts, both generated from the main repository
+public/           logo and the favicon set
 ```
 
 ## License
 
-Apache 2.0, Copyright 2026 Ashish Kumar. The full text is in [LICENSE](LICENSE).
-
+Apache-2.0, Copyright 2026 Ashish Kumar. The full text is in [LICENSE](LICENSE).
