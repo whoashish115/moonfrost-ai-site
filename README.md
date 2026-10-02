@@ -35,15 +35,6 @@ npm run build    # static export to out/
 
 Next.js 16 (static export), React 19, TypeScript. Deployed on Vercel from `main`.
 
-## Layout
-
-```
-app/              layout, the page, global styles (palette tokens for light and dark)
-components/       nav, charts drawn as inline SVG, about dialog, citation, theme toggle
-lib/              content.ts and curves.ts, both generated from the main repository
-public/           logo and the favicon set
-```
-
 ## License
 
 Apache-2.0, Copyright 2026 Ashish Kumar. The full text is in [LICENSE](LICENSE).
